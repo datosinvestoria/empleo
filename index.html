@@ -36,16 +36,31 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            margin-top: 20px;
+        }
     </style>
+    <script>
+        function buscarEmpleos(event) {
+            event.preventDefault();
+            const queryBase = "https://www.google.com/search?q=site:google.com inteligencia artificial empleos Ecuador";
+            const palabrasClave = document.getElementById("palabrasClave").value.trim();
+            const queryCompleta = palabrasClave ? `${queryBase} ${encodeURIComponent(palabrasClave)}` : queryBase;
+            document.getElementById("resultados").src = queryCompleta;
+        }
+    </script>
 </head>
 <body>
     <h1>Buscador de Empleos en IA - Ecuador</h1>
     <p>Encuentra oportunidades relacionadas con inteligencia artificial en Ecuador.</p>
-    <form action="https://www.google.com/search" method="get" target="_blank">
-        <input type="hidden" name="q" value="inteligencia artificial empleos Ecuador">
-        <input type="text" name="as_q" placeholder="Añadir más palabras clave (opcional)">
+    <form onsubmit="buscarEmpleos(event)">
+        <input type="text" id="palabrasClave" placeholder="Añadir más palabras clave (opcional)">
         <br><br>
         <input type="submit" value="Buscar Empleos">
     </form>
+    <iframe id="resultados" src=""></iframe>
 </body>
 </html>
