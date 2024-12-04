@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofertas de Empleo</title>
+    <title>Buscador de Empleos en IA - Ecuador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Ofertas de Empleo en Inteligencia Artificial - Ecuador</h1>
-    <ul id="job-list"></ul>
-
-    <script>
-        const rssFeedUrl = "https://ec.indeed.com/trabajo?q=Inteligencia+artificial&l=Quito,+Provincia+de+Pichincha&radius=50&rss=1";
-        const apiProxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
-        const jobList = document.getElementById("job-list");
-
-        async function fetchRSS() {
-            try {
-                const response = await fetch(apiProxy);
-                const data = await response.json();
-
-                if (data.items && data.items.length > 0) {
-                    data.items.forEach(item => {
-                        const li = document.createElement("li");
-                        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-                        jobList.appendChild(li);
-                    });
-                } else {
-                    jobList.innerHTML = "<li>No se encontraron ofertas.</li>";
-                }
-            } catch (error) {
-                jobList.innerHTML = `<li>Error al cargar las ofertas: ${error.message}</li>`;
-            }
-        }
-
-        fetchRSS();
-    </script>
+    <h1>Buscador de Empleos en IA - Ecuador</h1>
+    <p>Encuentra oportunidades relacionadas con inteligencia artificial en Ecuador.</p>
+    <form action="https://www.google.com/search" method="get" target="_blank">
+        <input type="hidden" name="q" value="site:google.com inteligencia artificial empleos Ecuador">
+        <input type="text" name="as_q" placeholder="Añadir más palabras clave (opcional)">
+        <br><br>
+        <input type="submit" value="Buscar Empleos">
+    </form>
 </body>
 </html>
